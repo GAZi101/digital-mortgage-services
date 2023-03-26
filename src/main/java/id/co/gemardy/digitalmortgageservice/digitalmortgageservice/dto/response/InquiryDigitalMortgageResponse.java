@@ -1,6 +1,8 @@
 package id.co.gemardy.digitalmortgageservice.digitalmortgageservice.dto.response;
 
-import id.co.gemardy.digitalmortgageservice.digitalmortgageservice.utils.StatusApplicationEnum;
+import java.util.List;
+
+import id.co.gemardy.digitalmortgageservice.digitalmortgageservice.dto.request.Product;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +13,7 @@ import lombok.Setter;
 public class InquiryDigitalMortgageResponse {
     
     private String reffCode;
-    private StatusApplicationEnum statusApplication;
-    private String listOfProduct;
+    private String status;
+    private List<Product> listProductApply;
     private String cif;
 }

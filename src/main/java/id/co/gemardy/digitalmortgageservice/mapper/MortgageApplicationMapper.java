@@ -7,6 +7,9 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import id.co.gemardy.digitalmortgageservice.digitalmortgageservice.dto.request.Product;
@@ -25,11 +28,16 @@ public interface MortgageApplicationMapper {
 
     @Mapping(target = "reffCode", source = "listResponseInquiry.reffCode")
     @Mapping(target = "statusApplication", source = "listResponseInquiry.status")
-    @Mapping(target = "listOfProduct", source = "listResponseInquiry.listProductApply")
+    @Mapping(target = "listOfProduct", expression = "java(listOfProductToJson(listResponseInquiry.getListProductApply()))")
     @Mapping(target = "cif", source = "listResponseInquiry.cif")
     List<InquiryDigitalMortgageResponse> listApplyEntityConvertToListResponseInquiry(List<DigitalMortgageApplicationEntity> listResponseInquiry);
 
     default String listOfProductToString(List<Product> listOfProduct) {
         return new Gson().toJson(listOfProduct);
+    }
+
+    default List<Product> listOfProductToList(String listOfProduct) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        return  mapper.readValue(listOfProduct, new TypeReference<List<Product>>(){});
     }
 }

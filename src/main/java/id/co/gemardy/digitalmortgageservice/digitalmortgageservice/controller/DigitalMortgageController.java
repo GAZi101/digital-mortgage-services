@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.co.gemardy.digitalmortgageservice.digitalmortgageservice.adapter.APIAdapter;
+import id.co.gemardy.digitalmortgageservice.digitalmortgageservice.dto.request.BaseRequest;
 import id.co.gemardy.digitalmortgageservice.digitalmortgageservice.dto.request.SubmitApplicationRequest;
 import id.co.gemardy.digitalmortgageservice.digitalmortgageservice.service.DigitalMortgageService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -33,5 +34,12 @@ public class DigitalMortgageController {
     @ResponseBody
     public ResponseEntity<?> applyMortgage(@RequestBody @Valid SubmitApplicationRequest applyMortgageRequest) {
         return apiAdapter.createResponse(digitalMortgageService.submitApplication(applyMortgageRequest));
+    }
+
+    @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Apply Digital Mortgage") })
+    @PostMapping("/inquiry-application")
+    @ResponseBody
+    public ResponseEntity<?> inquiryApplication(@RequestBody @Valid BaseRequest request) {
+        return apiAdapter.createResponse(digitalMortgageService.inquiryDigitalOpeningApply(request));
     }
 }
