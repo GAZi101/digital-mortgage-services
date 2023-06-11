@@ -18,11 +18,11 @@ jobs:
         java-version: '18'
         distribution: 'adopt'
     - name: Set up PostgreSQL
-      uses: postgresql/setup-postgres@v1
+      uses: harmon758/postgresql-action@v1
       with:
-        postgres-version: '13'
-        postgresql-user: ${{ secrets.POSTGRES_USERNAME }}
-        postgresql-password: ${{ secrets.POSTGRES_PASSWORD }}
+        postgres db: digital_mortgage
+        postgresql user: ${{ secrets.POSTGRES_USERNAME }}
+        postgresql password: ${{ secrets.POSTGRES_PASSWORD }}
         
     - name: Build with Maven
       env: 
