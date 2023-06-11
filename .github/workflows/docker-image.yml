@@ -17,8 +17,18 @@ jobs:
       with:
         java-version: '18'
         distribution: 'adopt'
-
+    - name: Set up PostgreSQL
+      uses: postgresql/setup-postgres@v1
+      with:
+        postgres-version: '13'
+        postgresql-user: ${{ secrets.POSTGRES_USERNAME }}
+        postgresql-password: ${{ secrets.POSTGRES_PASSWORD }}
+        
     - name: Build with Maven
+      env: 
+        PORT: 8181
+        POSTGRES_USERNAME: ${{secrets.POSTGRES_USERNAME}}
+        POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
       run: mvn clean install
 
     - name: Build and Push Docker image
