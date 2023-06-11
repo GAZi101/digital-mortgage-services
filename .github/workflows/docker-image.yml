@@ -20,7 +20,7 @@ jobs:
     - name: Set up PostgreSQL
       uses: harmon758/postgresql-action@v1
       with:
-        postgres db: digital_mortgage
+        postgresql db: digital_mortgage
         postgresql user: ${{ secrets.POSTGRES_USERNAME }}
         postgresql password: ${{ secrets.POSTGRES_PASSWORD }}
         
