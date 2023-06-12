@@ -7,7 +7,7 @@ env:
   IMG_NAME: gemardyz/digital-mortgage-service
   REGISTRY: docker.io
   GITHUB_SHA: ${{github.sha}}
-  GITHUB_BRANCH: ${{github.ref}}
+  GITHUB_BRANCH: ${{github.ref_name}}
   
 jobs:
   build:
