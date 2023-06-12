@@ -55,6 +55,13 @@ jobs:
       uses: digitalocean/action-doctl@v2
       with:
         token: ${{ secrets.DIGITALOCEAN_TOKEN }}
+    - name: Configure SSH
+      run: |
+        mkdir -p /home/runner/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/id_rsa
+        chmod 600 /home/runner/.ssh/id_rsa
+        git config --global core.sshCommand "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+
     - name: SSH to Droplet and deploy
       run: |
         doctl compute ssh ubuntu-s-1vcpu-1gb-amd-sgp1-01 --ssh-command "cd /path/on/droplet && docker-compose up -d"
