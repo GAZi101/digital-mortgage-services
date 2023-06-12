@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMG_NAME: ${{github.repository}}
+      IMG_NAME: gemardyz/digital-mortgage-service
     
     steps:
     - name: Checkout repository
@@ -58,6 +58,6 @@ jobs:
       uses: digitalocean/action-doctl@v2
       with:
         token: ${{ secrets.DIGITALOCEAN_TOKEN }}
-        command: apps create --spec /opt/digitalocean/digital-mortgage-deployment/doker/docker-compose.yml
+        command: apps create --spec /opt/digitalocean/digital-mortgage-deployment/docker/docker-compose.yml
 
 
