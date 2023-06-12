@@ -58,6 +58,6 @@ jobs:
       uses: digitalocean/action-doctl@v2
       with:
         token: ${{ secrets.DIGITALOCEAN_TOKEN }}
-        command: apps create --spec /opt/digitalocean/digital-mortgage-deployment/docker-compose.yml
+        command: apps create --spec /opt/digitalocean/digital-mortgage-deployment/doker/docker-compose.yml
 
 
