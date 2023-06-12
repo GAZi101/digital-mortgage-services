@@ -81,6 +81,8 @@ jobs:
             SSH_USER: ${{ secrets.DIGITALOCEAN_USERNAME }}
             SSH_KEY: ${{ secrets.DIGITALOCEAN_SSHKEY }}
             SSH_HOST: ${{ secrets.DIGITALOCEAN_HOST }}
+        - name: Build and Run App
+          run: ssh staging 'mkdir /opt/digitalocean/test'
 # deploy:
 #       runs-on: ubuntu-latest
 #       needs: build
