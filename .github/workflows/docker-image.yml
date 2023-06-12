@@ -55,7 +55,7 @@ jobs:
       with:
         envs: IMAGE_NAME,GITHUB_SHA
         push: true
-        tags: $IMG_NAME:$GITHUB_SHA
+        tags: ${{env.IMG_NAME}}:${{env.GITHUB_SHA}}
 
     - name: Deploy to DigitalOcean - App1
       uses: digitalocean/action-doctl@v2
