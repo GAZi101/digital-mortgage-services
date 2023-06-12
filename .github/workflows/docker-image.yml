@@ -65,4 +65,3 @@ jobs:
         token: ${{ secrets.DIGITALOCEAN_TOKEN }}
         command: apps create --spec /opt/digitalocean/digital-mortgage-deployment/docker/docker-compose.yml
   
-Update docker-image.yml · GAZi101/digital-mortgage-services@271e98d
