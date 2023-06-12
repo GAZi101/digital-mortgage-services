@@ -71,7 +71,7 @@ jobs:
             ssh-private-key: ${{ secrets.DIGITALOCEAN_SSHKEY }}
         - name: SSH to Server
           run: |
-            ping ${{secrets.DIGITALOCEAN_USERNAME}}
+            ping 159.223.53.82
             
 # deploy:
 #       runs-on: ubuntu-latest
