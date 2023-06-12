@@ -68,10 +68,10 @@ jobs:
         - name: Configure SSH
           uses: webfactory/ssh-agent@v0.5.3
           with:
-            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            ssh-private-key: ${{ secrets.DIGITALOCEAN_SSHKEY }}
         - name: SSH to Server
           run: |
-            ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{secrets.DIGITALOCEAN_USERNAME}}@${{secrets.DIGITALOCEAN_HOST}} 'cd /opt/digitalocean/'
+            ssh -i ${{ secrets.DIGITALOCEAN_SSHKEY }} ${{secrets.DIGITALOCEAN_USERNAME}}@${{secrets.DIGITALOCEAN_HOST}} 'cd /opt/digitalocean/'
             
 # deploy:
 #       runs-on: ubuntu-latest
