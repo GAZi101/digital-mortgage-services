@@ -71,7 +71,8 @@ jobs:
             ssh-private-key: ${{ secrets.DIGITALOCEAN_SSHKEY }}
         - name: SSH to Server
           run: |
-            ssh -i ${{ secrets.DIGITALOCEAN_SSHKEY }} ${{secrets.DIGITALOCEAN_USERNAME}}@${{secrets.DIGITALOCEAN_HOST}} 'cd /opt/digitalocean/'
+            #ssh -i ${{ secrets.DIGITALOCEAN_SSHKEY }} ${{secrets.DIGITALOCEAN_USERNAME}}@${{secrets.DIGITALOCEAN_HOST}} 'cd /opt/digitalocean/'
+            ping ${{secrets.DIGITALOCEAN_USERNAME}}
             
 # deploy:
 #       runs-on: ubuntu-latest
