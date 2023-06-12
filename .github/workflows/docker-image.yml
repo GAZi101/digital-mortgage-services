@@ -17,11 +17,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Java JDK
-      uses: actions/setup-java@v2
-      with:
-        java-version: '18'
-        distribution: 'adopt'
+#     - name: Set up Java JDK
+#       uses: actions/setup-java@v2
+#       with:
+#         java-version: '18'
+#         distribution: 'adopt'
 #     - name: Set up PostgreSQL
 #       uses: harmon758/postgresql-action@v1
 #       with:
@@ -51,7 +51,7 @@ jobs:
 #         push: true
 #         tags: ${{ env.IMG_NAME }}:${{ env.GITHUB_BRANCH }}-${{ env.GITHUB_SHA }}
 
-    - name: Deploy to DigitalOcean - App1
+    - name: Install doctl
       uses: digitalocean/action-doctl@v2
       with:
         token: ${{ secrets.DIGITALOCEAN_TOKEN }}
