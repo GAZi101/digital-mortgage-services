@@ -8,6 +8,7 @@ env:
   REGISTRY: docker.io
   GITHUB_SHA: ${{github.sha}}
   GITHUB_BRANCH: ${{github.ref_name}}
+  CONTAINER: digital-mortgage-service
   
 jobs:
   build:
@@ -50,9 +51,21 @@ jobs:
         push: true
         tags: ${{ env.IMG_NAME }}:${{ env.GITHUB_BRANCH }}-${{ env.GITHUB_SHA }}
 
-    - name: Deploy to DigitalOcean - App1
-      uses: digitalocean/action-doctl@v2
+#     - name: Deploy to DigitalOcean - App1
+#       uses: digitalocean/action-doctl@v2
+#       with:
+#         token: ${{ secrets.DIGITALOCEAN_TOKEN }}
+#         command: apps create --spec /opt/digitalocean/digital-mortgage-deployment/docker/docker-compose.yml
+
+    - name: SSH to Droplet
+      uses: appleboy/ssh-action@master
       with:
-        token: ${{ secrets.DIGITALOCEAN_TOKEN }}
-        command: apps create --spec /opt/digitalocean/digital-mortgage-deployment/docker/docker-compose.yml
+        host: your-droplet-ip
+        username: your-droplet-username
+        key: ${{ secrets.DIGITALOCEAN_SSHKEY }}
+        script: |
+          docker stop ${{ env.CONTAINER }} || true
+          docker rm ${{ env.CONTAINER }} || true
+          docker pull ${{ env.IMG_NAME }}:${{ env.GITHUB_BRANCH }}-${{ env.GITHUB_SHA }}
+          docker run -d --name ${{ env.CONTAINER }} -p 80:80 ${{ env.IMG_NAME }}:${{ env.GITHUB_BRANCH }}-${{ env.GITHUB_SHA }}
   
