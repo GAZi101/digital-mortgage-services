@@ -65,7 +65,7 @@ jobs:
 
     - name: SSH to Droplet and deploy
       run: |
-        doctl compute ssh ubuntu-s-1vcpu-1gb-amd-sgp1-01 --ssh-command "cd /opt/digitalocean/digital-mortgage-deployment/ && make start-all-services"
+        doctl compute ssh ubuntu-s-1vcpu-1gb-amd-sgp1-01 --ssh-command "cd /opt/digitalocean/digital-mortgage-deployment/ && make start-all-services ${{ env.IMG_NAME }}:${{ env.GITHUB_BRANCH }}-${{ env.GITHUB_SHA }}"
 
 #     - name: SSH to Droplet
 #       uses: appleboy/ssh-action@master
