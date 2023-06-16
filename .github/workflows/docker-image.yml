@@ -1,4 +1,4 @@
-name: CI/CD Pipeline - App1
+name: Digital Mortgage Services CI/CD Pipeline 
 
 on:
   push:
